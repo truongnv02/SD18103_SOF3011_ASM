@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SD18103_SOF3011_ASM:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>SD18103_SOF3011_ASM</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="SD18103_SOF3011_ASM-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="SD18103_SOF3011_ASM:war exploded" />
+    </root>
+  </artifact>
+</component>
