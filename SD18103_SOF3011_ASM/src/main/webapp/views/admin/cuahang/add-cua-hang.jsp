@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: truon
   Date: 7/19/2023
-  Time: 8:06 PM
+  Time: 10:30 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -14,9 +14,9 @@
 </head>
 <body>
     <div class="container">
-        <h3 style="text-align: center;margin-top:15px;">Thêm thông tin Chức Vụ</h3>
-        <p class="text-danger">${sessionScope.mess_error}</p>
-        <form action="/chuc-vu/add" method="post">
+        <h3 style="text-align: center;margin-top:15px;">Thêm thông tin Cửa Hàng</h3>
+        <div class="text-danger">${sessionScope.mess_error}</div>
+        <form action="/cua-hang/add" method="post">
             <div class="mb-3">
                 <label class="form-label">Ma</label>
                 <input type="text" class="form-control" name="ma">
@@ -24,6 +24,18 @@
             <div class="mb-3">
                 <label class="form-label">Ten</label>
                 <input type="text" class="form-control" name="ten">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Dia chi</label>
+                <input type="text" class="form-control" name="diaChi">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Thanh pho</label>
+                <input type="text" class="form-control" name="thanhPho">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Quoc Gia</label>
+                <input type="text" class="form-control" name="quocGia">
             </div>
             <button type="submit" class="btn btn-primary">ADD</button>
         </form>

@@ -79,12 +79,12 @@ public class ChucVuServlet extends HttpServlet {
             String ten = req.getParameter("ten");
             if(ma.trim().isEmpty() || ten.trim().isEmpty()) {
                 req.setAttribute("mess_error", "Vui long khong de trong");
-                resp.sendRedirect("/chuc-vu/view-add");
+                resp.sendRedirect("/chuc-vu/detail?ma=" + ma);
                 return;
             }
             if(chucVuReposiroty.getChucVuByMa(ma) != null) {
                 req.setAttribute("mess_error", "Ma da ton tai");
-                resp.sendRedirect("/chuc-vu/view-add");
+                resp.sendRedirect("/chuc-vu/detail?ma=" + ma);
                 return;
             }
             ChucVu chucVu = new ChucVu();
@@ -117,6 +117,8 @@ public class ChucVuServlet extends HttpServlet {
             if(chucVuReposiroty.add(chucVu)) {
                 req.setAttribute("mess", "Them thanh cong");
                 resp.sendRedirect("/chuc-vu/hien-thi");
+            }else {
+                req.setAttribute("mess_error", "Them that bai");
             }
         }catch (Exception e) {
             e.printStackTrace();

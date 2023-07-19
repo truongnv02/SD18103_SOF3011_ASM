@@ -15,7 +15,7 @@
 <body>
     <div class="container">
         <h3 style="text-align: center;margin-top:15px;">Thêm thông tin Chức Vụ</h3>
-        <p class="text-danger">${mess_error}</p>
+        <p class="text-danger">${sessionScope.mess_error}</p>
         <form action="/chuc-vu/add" method="post">
             <div class="mb-3">
                 <label class="form-label">Ma</label>

@@ -1,6 +1,6 @@
 package com.poly.SD18103_SOF3011_ASM.repositories;
 
-import com.poly.SD18103_SOF3011_ASM.entities.ChucVu;
+import com.poly.SD18103_SOF3011_ASM.entities.CuaHang;
 import com.poly.SD18103_SOF3011_ASM.util.HibernateUtil;
 import jakarta.persistence.Query;
 import org.hibernate.Session;
@@ -9,34 +9,36 @@ import org.hibernate.Transaction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChucVuReposiroty {
+public class CuaHangRepository {
 
-    public List<ChucVu> getAll() {
-        List<ChucVu> list = new ArrayList<>();
+    public List<CuaHang> getAll() {
+        List<CuaHang> list = new ArrayList<>();
         try(Session session = HibernateUtil.getFACTORY().openSession()) {
-            Query query = session.createQuery("from ChucVu order by ma asc");
+            Query query = session.createQuery("from CuaHang order by ma asc");
             list = query.getResultList();
         }catch (Exception e) {
             e.printStackTrace();
         }
         return list;
     }
-    public ChucVu getChucVuByMa(String ma) {
-        ChucVu chucVu = null;
+
+    public CuaHang getCuaHangByMa(String ma) {
+        CuaHang cuaHang = null;
         try(Session session = HibernateUtil.getFACTORY().openSession()) {
-            Query query = session.createQuery("from ChucVu where ma =: ma");
+            Query query = session.createQuery("from CuaHang where ma =: ma");
             query.setParameter("ma", ma);
-            chucVu = (ChucVu) query.getSingleResult();
+            cuaHang = (CuaHang) query.getSingleResult();
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return chucVu;
+        return cuaHang;
     }
-    public boolean add(ChucVu chucVu) {
+
+    public boolean add(CuaHang cuaHang) {
         Transaction transaction = null;
         try(Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.persist(chucVu);
+            session.persist(cuaHang);
             transaction.commit();
             return true;
         }catch (Exception e) {
@@ -44,11 +46,12 @@ public class ChucVuReposiroty {
         }
         return false;
     }
-    public boolean delete(ChucVu chucVu) {
+
+    public boolean delete(CuaHang cuaHang) {
         Transaction transaction = null;
         try(Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.delete(chucVu);
+            session.delete(cuaHang);
             transaction.commit();
             return true;
         }catch (Exception e) {
@@ -56,11 +59,12 @@ public class ChucVuReposiroty {
         }
         return false;
     }
-    public boolean update(ChucVu chucVu) {
+
+    public boolean update(CuaHang cuaHang) {
         Transaction transaction = null;
         try(Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.merge(chucVu);
+            session.merge(cuaHang);
             transaction.commit();
             return true;
         }catch (Exception e) {
