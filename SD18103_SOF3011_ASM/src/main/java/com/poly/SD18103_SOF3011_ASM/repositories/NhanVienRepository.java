@@ -1,6 +1,6 @@
 package com.poly.SD18103_SOF3011_ASM.repositories;
 
-import com.poly.SD18103_SOF3011_ASM.entities.ChucVu;
+import com.poly.SD18103_SOF3011_ASM.entities.NhanVien;
 import com.poly.SD18103_SOF3011_ASM.util.HibernateUtil;
 import jakarta.persistence.Query;
 import org.hibernate.Session;
@@ -9,34 +9,36 @@ import org.hibernate.Transaction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChucVuReposiroty {
+public class NhanVienRepository {
 
-    public List<ChucVu> getAll() {
-        List<ChucVu> list = new ArrayList<>();
+    public List<NhanVien> getAll() {
+        List<NhanVien> list = new ArrayList<>();
         try(Session session = HibernateUtil.getFACTORY().openSession()) {
-            Query query = session.createQuery("from ChucVu order by ma asc");
+            Query query = session.createQuery("from NhanVien order by ma asc");
             list = query.getResultList();
         }catch (Exception e) {
             e.printStackTrace();
         }
         return list;
     }
-    public ChucVu getChucVuByMa(String ma) {
-        ChucVu chucVu = null;
+
+    public NhanVien getNhanVienByMa(String ma) {
+        NhanVien nhanVien = null;
         try(Session session = HibernateUtil.getFACTORY().openSession()) {
-            Query query = session.createQuery("from ChucVu where ma =: ma");
+            Query query = session.createQuery("from NhanVien where ma =: ma");
             query.setParameter("ma", ma);
-            chucVu = (ChucVu) query.getSingleResult();
+            nhanVien = (NhanVien) query.getSingleResult();
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return chucVu;
+        return nhanVien;
     }
-    public boolean add(ChucVu chucVu) {
+
+    public boolean add(NhanVien nhanVien) {
         Transaction transaction = null;
         try(Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.persist(chucVu);
+            session.persist(nhanVien);
             transaction.commit();
             return true;
         }catch (Exception e) {
@@ -44,11 +46,12 @@ public class ChucVuReposiroty {
         }
         return false;
     }
-    public boolean delete(ChucVu chucVu) {
+
+    public boolean delete(NhanVien nhanVien) {
         Transaction transaction = null;
         try(Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.delete(chucVu);
+            session.delete(nhanVien);
             transaction.commit();
             return true;
         }catch (Exception e) {
@@ -56,14 +59,12 @@ public class ChucVuReposiroty {
         }
         return false;
     }
-    public boolean update(String ma, ChucVu chucVu) {
+
+    public boolean update(NhanVien nhanVien) {
         Transaction transaction = null;
         try(Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("update SanPham set ten =: ten where ma =: ma");
-            query.setParameter("ten", chucVu.getTen());
-            query.setParameter("ma", ma);
-            query.executeUpdate();
+            session.merge(nhanVien);
             transaction.commit();
             return true;
         }catch (Exception e) {

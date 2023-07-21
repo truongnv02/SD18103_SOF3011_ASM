@@ -86,11 +86,6 @@ public class CuaHangServlet extends HttpServlet {
                 resp.sendRedirect("/cua-hang/detail?ma=" + ma);
                 return;
             }
-            if(cuaHangRepository.getCuaHangByMa(ma) != null) {
-                req.setAttribute("mess_error", "Ma da ton tai");
-                resp.sendRedirect("/cua-hang/detail?ma=" + ma);
-                return;
-            }
             CuaHang cuaHang = new CuaHang();
             BeanUtils.populate(cuaHang, req.getParameterMap());
             if(cuaHangRepository.update(cuaHang)) {

@@ -82,14 +82,9 @@ public class ChucVuServlet extends HttpServlet {
                 resp.sendRedirect("/chuc-vu/detail?ma=" + ma);
                 return;
             }
-            if(chucVuReposiroty.getChucVuByMa(ma) != null) {
-                req.setAttribute("mess_error", "Ma da ton tai");
-                resp.sendRedirect("/chuc-vu/detail?ma=" + ma);
-                return;
-            }
             ChucVu chucVu = new ChucVu();
             BeanUtils.populate(chucVu, req.getParameterMap());
-            if(chucVuReposiroty.update(chucVu)) {
+            if(chucVuReposiroty.update(ma, chucVu)) {
                 req.setAttribute("mess", "Cap nhat thanh cong");
                 resp.sendRedirect("/chuc-vu/hien-thi");
             }
