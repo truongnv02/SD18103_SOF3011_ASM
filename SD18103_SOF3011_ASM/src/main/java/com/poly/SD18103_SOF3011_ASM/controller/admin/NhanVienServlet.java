@@ -51,7 +51,14 @@ public class NhanVienServlet extends HttpServlet {
     }
 
     private void detail(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<CuaHang> listCuaHang = cuaHangRepository.getAll();
+        List<ChucVu> listChucVu = chucVuReposiroty.getAll();
+        req.setAttribute("listCuaHang", listCuaHang);
+        req.setAttribute("listChucVu", listChucVu);
+
         String ma = req.getParameter("ma");
+        req.setAttribute("idChucVu", nhanVienRepository.getIdChucVuByMa(ma));
+        req.setAttribute("idCuaHang", nhanVienRepository.getIdCuaHangByMa(ma));
         NhanVien nhanVien = nhanVienRepository.getNhanVienByMa(ma);
         req.setAttribute("detailNhanVien", nhanVien);
         req.getRequestDispatcher("/views/admin/nhanvien/detail-nhan-vien.jsp").forward(req, resp);
@@ -89,7 +96,46 @@ public class NhanVienServlet extends HttpServlet {
     }
 
     private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            String ma = req.getParameter("ma");
+            String ten = req.getParameter("ten");
+            String tenDem = req.getParameter("tenDem");
+            String ho = req.getParameter("ho");
+            String diaChi = req.getParameter("diaChi");
+            String sdt = req.getParameter("sdt");
+            String matKhau = req.getParameter("matKhau");
+            UUID idCuaHang = UUID.fromString(req.getParameter("idCuaHang"));
+            UUID idChucVu = UUID.fromString(req.getParameter("idChucVu"));
 
+            if (ma.trim().isEmpty() || ten.trim().isEmpty() || tenDem.trim().isEmpty() || ho.trim().isEmpty()
+                    || sdt.trim().isEmpty() || diaChi.trim().isEmpty() || matKhau.trim().isEmpty()) {
+                req.getSession().setAttribute("mess_error", "Vui lòng nhập đầy đủ thông tin");
+                resp.sendRedirect("/nhan-vien/detail?ma=" + ma);
+                return;
+            }
+
+            CuaHang cuaHang = new CuaHang();
+            cuaHang.setId(idCuaHang);
+            ChucVu chucVu = new  ChucVu();
+            chucVu.setId(idChucVu);
+
+            DateTimeConverter dtc = new DateConverter(new Date());
+            dtc.setPattern("yyyy-MM-dd");
+            ConvertUtils.register(dtc, Date.class);
+
+            NhanVien nhanVien = new NhanVien();
+            nhanVien.setCuaHang(cuaHang);
+            nhanVien.setChucVu(chucVu);
+            BeanUtils.populate(nhanVien, req.getParameterMap());
+            if (nhanVienRepository.update(ma, nhanVien)) {
+                req.getSession().setAttribute("message", "Cập nhật thành công");
+                resp.sendRedirect("/nhan-vien/hien-thi");
+            } else {
+                req.getSession().setAttribute("mess_error", "Cập nhật thất bại");
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

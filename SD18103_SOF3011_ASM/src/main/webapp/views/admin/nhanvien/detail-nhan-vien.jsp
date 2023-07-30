@@ -16,45 +16,45 @@
     <div class="container">
         <h3 style="text-align: center;margin-top:15px;">Thông tin nhân viên</h3>
         <div class="text-danger">${mess_error}</div>
-        <form action="/nhan-vien/add" method="post">
+        <form action="/nhan-vien/update" method="post">
             <div class="row mt-4">
                 <div class="col-6">
                     <label class="form-label">Mã</label>
-                    <input type="text" class="form-control" name="ma">
+                    <input type="text" class="form-control" name="ma" value="${detailNhanVien.ma}">
                 </div>
                 <div class="col-6">
                     <label class="form-label">Tên</label>
-                    <input type="text" class="form-control" name="ten">
+                    <input type="text" class="form-control" name="ten" value="${detailNhanVien.ten}">
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-6">
                     <label class="form-label">Tên đệm</label>
-                    <input type="text" class="form-control" name="tenDem">
+                    <input type="text" class="form-control" name="tenDem" value="${detailNhanVien.tenDem}">
                 </div>
                 <div class="col-6">
                     <label class="form-label">Họ</label>
-                    <input type="text" class="form-control" name="ho">
+                    <input type="text" class="form-control" name="ho" value="${detailNhanVien.ho}">
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-6">
                     <label class="form-label">Ngày sinh</label>
-                    <input type="date" class="form-control" name="ngaySinh" required>
+                    <input type="date" class="form-control" name="ngaySinh" required value="${detailNhanVien.ngaySinh}">
                 </div>
                 <div class="col-6">
                     <label class="form-label">Địa chỉ</label>
-                    <input type="text" class="form-control" name="diaChi">
+                    <input type="text" class="form-control" name="diaChi" value="${detailNhanVien.diaChi}">
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-6">
                     <label class="form-label">SDT</label>
-                    <input type="tel" class="form-control" name="sdt">
+                    <input type="tel" class="form-control" name="sdt" value="${detailNhanVien.sdt}">
                 </div>
                 <div class="col-6">
                     <label class="form-label">Mật khẩu</label>
-                    <input type="password" class="form-control" name="matKhau">
+                    <input type="password" class="form-control" name="matKhau" value="${detailNhanVien.matKhau}">
                 </div>
             </div>
             <div class="row mt-4">
@@ -62,7 +62,7 @@
                     <label class="form-label">Cửa hàng</label>
                     <select class="form-control" name="idCuaHang" required>
                         <c:forEach items="${listCuaHang}" var="cuaHang">
-                            <option value="${cuaHang.id}">${cuaHang.ten}</option>
+                            <option value="${cuaHang.id}" ${cuaHang.id == idCuaHang ? "selected" : ""}>${cuaHang.ten}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -70,7 +70,7 @@
                     <label class="form-label">Chức vụ</label>
                     <select class="form-control" name="idChucVu" required>
                         <c:forEach items="${listChucVu}" var="chucVu">
-                            <option value="${chucVu.id}">${chucVu.ten}</option>
+                            <option value="${chucVu.id}" ${chucVu.id == idChucVu ? "selected" : ""}>${chucVu.ten}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -79,13 +79,13 @@
                 <div class="col-6">
                     <label class="form-label">Giới tính</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" value="Nam" name="gioiTinh" checked>
+                        <input class="form-check-input" type="radio" value="Nam" ${detailNhanVien.gioiTinh == "Nam" ? "checked" : ""} name="gioiTinh" checked>
                         <label class="form-check-label">
                             Nam
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" value="Nữ" name="gioiTinh">
+                        <input class="form-check-input" type="radio" value="Nữ" ${detailNhanVien.gioiTinh == "Nữ" ? "checked" : ""} name="gioiTinh">
                         <label class="form-check-label">
                             Nữ
                         </label>
@@ -94,13 +94,13 @@
                 <div class="col-6">
                     <label class="form-label">Trạng thái</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" value="1" name="trangThai" checked>
+                        <input class="form-check-input" type="radio" value="1" ${detailNhanVien.trangThai == 1 ? "checked" : ""} name="trangThai" checked>
                         <label class="form-check-label">
                             Đang làm
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" value="0" name="trangThai">
+                        <input class="form-check-input" type="radio" value="0" ${detailNhanVien.trangThai == 0 ? "checked" : ""} name="trangThai">
                         <label class="form-check-label">
                             Đã nghỉ
                         </label>

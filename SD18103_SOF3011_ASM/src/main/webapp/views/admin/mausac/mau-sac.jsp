@@ -18,7 +18,7 @@
         <h3 style="text-align: center;margin-top:15px;">Quản lý Màu Sắc</h3>
         <a href="/mau-sac/view-add" class="btn btn-primary">Add</a>
         <c:if test="${ f:length(listMauSac) == 0 }">
-            <h3>Không có dữ liệu</h3>
+            <h3 style="text-align: center;margin-top:15px;">Không có dữ liệu</h3>
         </c:if>
         <c:if test="${ f:length(listMauSac) != 0 }">
             <table class="table">
