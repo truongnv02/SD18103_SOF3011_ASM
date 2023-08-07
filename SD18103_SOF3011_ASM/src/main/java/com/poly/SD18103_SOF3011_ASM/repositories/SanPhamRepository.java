@@ -51,8 +51,9 @@ public class SanPhamRepository {
         Transaction transaction = null;
         try(Session session = HibernateUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("update SanPham set ten =: ten where ma =: ma");
+            Query query = session.createQuery("update SanPham set ten =: ten, image =: image where ma =: ma");
             query.setParameter("ten", sanPham.getTen());
+            query.setParameter("image", sanPham.getImage());
             query.setParameter("ma", ma);
             query.executeUpdate();
             transaction.commit();

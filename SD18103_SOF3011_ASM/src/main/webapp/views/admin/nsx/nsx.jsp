@@ -5,6 +5,7 @@
   Time: 7:30 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -14,8 +15,12 @@
 </head>
 <body>
 <div class="container">
-    <h3 style="text-align: center;margin-top:15px;">Quản lý NSX</h3>
+    <h3 style="text-align: center;margin-top:15px;">Quản lý Nhà Sản Xuất</h3>
     <a href="/nsx/view-add" class="btn btn-primary">Add</a>
+    <c:if test="${ f:length(listNSX) == 0 }">
+        <h3 style="text-align: center;margin-top:15px;">Không có dữ liệu</h3>
+    </c:if>
+    <c:if test="${ f:length(listNSX) != 0 }">
     <table class="table">
         <thead>
             <tr>
@@ -39,6 +44,7 @@
             </c:forEach>
         </tbody>
     </table>
+    </c:if>
 </div>
 </body>
 </html>

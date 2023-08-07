@@ -43,7 +43,8 @@ public class DongSPServlet extends HttpServlet {
         String ma = req.getParameter("ma");
         DongSP dongSP = dongSPRepository.getDongSPByMa(ma);
         req.setAttribute("detailDongSP", dongSP);
-        req.getRequestDispatcher("/views/admin/dongsanpham/detail-dong-sp.jsp").forward(req, resp);
+        req.setAttribute("view_dongSP", "/views/admin/dongsanpham/detail-dong-sp.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
@@ -54,13 +55,15 @@ public class DongSPServlet extends HttpServlet {
     }
 
     private void viewAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
-        resp.sendRedirect("/views/admin/dongsanpham/add-dong-sp.jsp");
+        req.setAttribute("view_dongSP", "/views/admin/dongsanpham/add-dong-sp.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);;
     }
 
     private void hienThi(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
         List<DongSP> list = dongSPRepository.getAll();
         req.setAttribute("listDongSP", list);
-        req.getRequestDispatcher("/views/admin/dongsanpham/dong-sp.jsp").forward(req, resp);
+        req.setAttribute("view_dongSP", "/views/admin/dongsanpham/dong-sp.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     @Override

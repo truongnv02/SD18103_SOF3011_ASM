@@ -43,7 +43,8 @@ public class NSXServlet extends HttpServlet {
         String ma = req.getParameter("ma");
         NSX nsx = nsxRepository.getNSXByMa(ma);
         req.setAttribute("detailNSX", nsx);
-        req.getRequestDispatcher("/views/admin/nsx/detail-nsx.jsp").forward(req, resp);
+        req.setAttribute("view_NSX", "/views/admin/nsx/detail-nsx.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -54,13 +55,15 @@ public class NSXServlet extends HttpServlet {
     }
 
     private void viewAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/views/admin/nsx/add-nsx.jsp");
+        req.setAttribute("view_NSX", "/views/admin/nsx/add-nsx.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     private void hienThi(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<NSX> list = nsxRepository.getAll();
         req.setAttribute("listNSX", list);
-        req.getRequestDispatcher("/views/admin/nsx/nsx.jsp").forward(req, resp);
+        req.setAttribute("view_NSX", "/views/admin/nsx/nsx.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     @Override

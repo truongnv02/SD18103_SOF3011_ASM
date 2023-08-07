@@ -128,4 +128,57 @@ public class ChiTietSanPhamRepository {
         return false;
     }
 
+    public List<ChiTietSP> search(String spTen, String msTen, String dspTen, String nsxTen) {
+        List<ChiTietSP> list = new ArrayList<>();
+        String hql = "from ChiTietSP where sanPham.ten like :spTen or mauSac.ten like :msTen or dongSP.ten like :dspTen or nsx.ten like :nsxTen";
+        try(Session session = HibernateUtil.getFACTORY().openSession()) {
+            Query query = session.createQuery(hql);
+            query.setParameter("spTen", "%" + spTen + "%");
+            query.setParameter("msTen", "%" + msTen + "%");
+            query.setParameter("dspTen", "%" + dspTen + "%");
+            query.setParameter("nsxTen", "%" + nsxTen + "%");
+            list = query.getResultList();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public Integer getSoLuong(UUID idChiTietSP) {
+        Integer soLuongTon = null;
+        try(Session session = HibernateUtil.getFACTORY().openSession()) {
+            Query query = session.createQuery("select ctsp.soLuongTon from ChiTietSP ctsp where id =: id");
+            query.setParameter("id", idChiTietSP);
+            soLuongTon = (Integer) query.getSingleResult();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return soLuongTon;
+    }
+
+    public void updateSoLuong(Integer soLuong, UUID idChiTietSP) {
+        Transaction transaction = null;
+        try(Session session = HibernateUtil.getFACTORY().openSession()) {
+            Query query = session.createQuery("update ChiTietSP set soLuongTon =: soLuong where id =: id");
+            query.setParameter("soLuong", soLuong);
+            query.setParameter("id", idChiTietSP);
+            query.executeUpdate();
+            transaction.commit();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<ChiTietSP> getListCTSPByIdDongSP(UUID id) {
+        List<ChiTietSP> list = new ArrayList<>();
+        String hql = "from ChiTietSP where dongSP.id =: id";
+        try(Session session = HibernateUtil.getFACTORY().openSession()) {
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            list = query.getResultList();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

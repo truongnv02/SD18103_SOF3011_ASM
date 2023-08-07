@@ -35,6 +35,9 @@ public class SanPham implements Serializable {
     @Column(name = "Ten")
     private String ten;
 
+    @Column(name = "ImageSP")
+    private String image;
+
     @OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
     private List<ChiTietSP> listChiTietSP;
 }

@@ -43,7 +43,8 @@ public class MauSacServlet extends HttpServlet {
         String ma = req.getParameter("ma");
         MauSac mauSac = mauSacRepository.getMauSacByMa(ma);
         req.setAttribute("detailMauSac", mauSac);
-        req.getRequestDispatcher("/views/admin/mausac/detail-mau-sac.jsp").forward(req, resp);
+        req.setAttribute("view_mauSac", "/views/admin/mausac/detail-mau-sac.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -54,13 +55,15 @@ public class MauSacServlet extends HttpServlet {
     }
 
     private void viewAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/views/admin/mausac/add-mau-sac.jsp");
+        req.setAttribute("view_mauSac", "/views/admin/mausac/add-mau-sac.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     private void hienThi(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<MauSac> list = mauSacRepository.getAll();
         req.setAttribute("listMauSac", list);
-        req.getRequestDispatcher("/views/admin/mausac/mau-sac.jsp").forward(req, resp);
+        req.setAttribute("view_mauSac", "/views/admin/mausac/mau-sac.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     @Override

@@ -34,6 +34,7 @@
                         <td>Giá nhập</td>
                         <td>Giá bán</td>
                         <td>Mô tả</td>
+                        <td>Hình ảnh</td>
                         <td>Active</td>
                     </tr>
                 </thead>
@@ -49,6 +50,7 @@
                             <td>${ctsp.soLuongTon}</td>
                             <td>${ctsp.giaNhap}</td>
                             <td>${ctsp.giaBan}</td>
+                            <td><img src="${ctsp.sanPham.getImage()}" alt="Ảnh Sản Phẩm" style="width:70px; height: 60px;"></td>
                             <td>${ctsp.moTa}</td>
                             <td>
                                 <a href="/chi-tiet-san-pham/detail?id=${ctsp.id}" class="btn btn-primary">Detail</a>

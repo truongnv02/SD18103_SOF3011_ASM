@@ -43,7 +43,8 @@ public class CuaHangServlet extends HttpServlet {
         String ma = req.getParameter("ma");
         CuaHang cuaHang = cuaHangRepository.getCuaHangByMa(ma);
         req.setAttribute("detailCuaHang", cuaHang);
-        req.getRequestDispatcher("/views/admin/cuahang/detail-cua-hang.jsp").forward(req, resp);
+        req.setAttribute("view_cuaHang", "/views/admin/cuahang/detail-cua-hang.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -54,13 +55,15 @@ public class CuaHangServlet extends HttpServlet {
     }
 
     private void viewAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/views/admin/cuahang/add-cua-hang.jsp");
+        req.setAttribute("view_cuaHang", "/views/admin/cuahang/add-cua-hang.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     private void hienThi(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<CuaHang> list = cuaHangRepository.getAll();
         req.setAttribute("listCuaHang", list);
-        req.getRequestDispatcher("/views/admin/cuahang/cua-hang.jsp").forward(req, resp);
+        req.setAttribute("view_cuaHang", "/views/admin/cuahang/cua-hang.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     @Override

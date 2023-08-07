@@ -50,17 +50,20 @@ public class ChucVuServlet extends HttpServlet {
         String ma = req.getParameter("ma");
         ChucVu chucVu = chucVuReposiroty.getChucVuByMa(ma);
         req.setAttribute("detailChucVu", chucVu);
-        req.getRequestDispatcher("/views/admin/chucvu/detail-chuc-vu.jsp").forward(req, resp);
+        req.setAttribute("view_chucVu", "/views/admin/sanpham/detail-chuc-vu.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     private void viewAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/views/admin/chucvu/add-chuc-vu.jsp");
+        req.setAttribute("view_chucVu", "/views/admin/chucvu/add-chuc-vu.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     private void hienThi(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<ChucVu> listChuVu = chucVuReposiroty.getAll();
         req.setAttribute("listChucVu", listChuVu);
-        req.getRequestDispatcher("/views/admin/chucvu/chuc-vu.jsp").forward(req, resp);
+        req.setAttribute("view_chucVu", "/views/admin/chucvu/chuc-vu.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     @Override

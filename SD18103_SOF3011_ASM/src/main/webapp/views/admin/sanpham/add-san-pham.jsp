@@ -16,7 +16,7 @@
     <div class="container">
         <h3 style="text-align: center;margin-top:15px;">Thêm thông tin Sản phẩm</h3>
         <div class="text-danger">${mess_error}</div>
-        <form action="/san-pham/add" method="post">
+        <form action="/san-pham/add" method="post" enctype="multipart/form-data">
             <div class="col-6">
                 <label class="form-label">Mã</label>
                 <input type="text" class="form-control"  name="ma">
@@ -24,6 +24,10 @@
             <div class="col-6">
                 <label class="form-label">Tên</label>
                 <input type="text" class="form-control"  name="ten">
+            </div>
+            <div class="col-6">
+                <label class="form-label">Hình ảnh</label>
+                <input type="file" class="form-control"  name="image">
             </div>
             <div class="row mt-4" style="justify-content: center">
                 <a href="/san-pham/hien-thi" class="btn btn-success col-1 m-3">Exit</a>

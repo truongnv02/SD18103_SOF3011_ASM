@@ -112,4 +112,21 @@ public class NhanVienRepository {
         }
         return idCuaHang;
     }
+
+    public NhanVien checkLoginNhanVien(String ma, String matKhau) {
+        NhanVien nhanVien = null;
+        try(Session session = HibernateUtil.getFACTORY().openSession()) {
+            Query query = session.createQuery("from NhanVien where ma =: ma and matKhau =: matKhau");
+            query.setParameter("ma", ma);
+            query.setParameter("matKhau", matKhau);
+            if(query.getResultList().isEmpty()) {
+                return null;
+            }else {
+                nhanVien = (NhanVien) query.getSingleResult();
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return nhanVien;
+    }
 }

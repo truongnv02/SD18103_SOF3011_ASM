@@ -50,17 +50,20 @@ public class KhachHangServlet extends HttpServlet {
         String ma = req.getParameter("ma");
         KhachHang khachHang = khachHangRepository.getKhachHangByMa(ma);
         req.setAttribute("detailKhachHang", khachHang);
-        req.getRequestDispatcher("/views/admin/khachhang/detail-khach-hang.jsp").forward(req, resp);
+        req.setAttribute("view_khachHang", "/views/admin/khachhang/detail-khach-hang.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     private void viewAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/views/admin/khachhang/add-khach-hang.jsp");
+        req.setAttribute("view_khachHang", "/views/admin/khachhang/add-khach-hang.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     private void hienThi(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<KhachHang> listKhachHang = khachHangRepository.getAll();
         req.setAttribute("listKhachHang", listKhachHang);
-        req.getRequestDispatcher("/views/admin/khachhang/khach-hang.jsp").forward(req, resp);
+        req.setAttribute("view_khachHang", "/views/admin/khachhang/khach-hang.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.poly.SD18103_SOF3011_ASM.repositories;
 
 import com.poly.SD18103_SOF3011_ASM.entities.KhachHang;
+import com.poly.SD18103_SOF3011_ASM.entities.NhanVien;
 import com.poly.SD18103_SOF3011_ASM.util.HibernateUtil;
 import jakarta.persistence.Query;
 import org.hibernate.Session;
@@ -71,5 +72,22 @@ public class KhachHangRepository {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public KhachHang checkLoginKhachHang(String ma, String matKhau) {
+        KhachHang khachHang = null;
+        try(Session session = HibernateUtil.getFACTORY().openSession()) {
+            Query query = session.createQuery("from KhachHang where ma =: ma and matKhau =: matKhau");
+            query.setParameter("ma", ma);
+            query.setParameter("matKhau", matKhau);
+            if(query.getResultList().isEmpty()) {
+                return null;
+            }else {
+                khachHang = (KhachHang) query.getSingleResult();
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return khachHang;
     }
 }

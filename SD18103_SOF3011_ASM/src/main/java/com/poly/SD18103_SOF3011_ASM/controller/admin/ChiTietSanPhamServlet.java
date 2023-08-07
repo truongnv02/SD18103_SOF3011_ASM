@@ -71,7 +71,8 @@ public class ChiTietSanPhamServlet extends HttpServlet {
         req.setAttribute("idDongSP", chiTietSanPhamRepository.getIdDongSP(id));
         ChiTietSP chiTietSP = chiTietSanPhamRepository.getCTSPById(id);
         req.setAttribute("chiTietSP", chiTietSP);
-        req.getRequestDispatcher("/views/admin/chitietsanpham/detail-ctsp.jsp").forward(req, resp);
+        req.setAttribute("view_CTSP", "/views/admin/chitietsanpham/detail-ctsp.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -90,13 +91,23 @@ public class ChiTietSanPhamServlet extends HttpServlet {
         req.setAttribute("listMauSac", listMauSac);
         List<DongSP> listDongSP = dongSPRepository.getAll();
         req.setAttribute("listDongSP", listDongSP);
-        req.getRequestDispatcher("/views/admin/chitietsanpham/add-ctsp.jsp").forward(req, resp);
+        req.setAttribute("view_CTSP", "/views/admin/chitietsanpham/add-ctsp.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     private void hienThi(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<ChiTietSP> listCTSP = chiTietSanPhamRepository.getAll();
+        String realPath = req.getServletContext().getRealPath("/images");
+        // hien thi hinh anh
+        for(ChiTietSP ctsp : listCTSP) {
+            String fileName = ctsp.getSanPham().getImage();
+            if(fileName != null) {
+                ctsp.getSanPham().setImage(req.getContextPath() + "/images/" + fileName);
+            }
+        }
         req.setAttribute("listCTSP", listCTSP);
-        req.getRequestDispatcher("/views/admin/chitietsanpham/chi-tiet-san-pham.jsp").forward(req, resp);
+        req.setAttribute("view_CTSP", "/views/admin/chitietsanpham/chi-tiet-san-pham.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     @Override

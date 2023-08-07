@@ -61,7 +61,8 @@ public class NhanVienServlet extends HttpServlet {
         req.setAttribute("idCuaHang", nhanVienRepository.getIdCuaHangByMa(ma));
         NhanVien nhanVien = nhanVienRepository.getNhanVienByMa(ma);
         req.setAttribute("detailNhanVien", nhanVien);
-        req.getRequestDispatcher("/views/admin/nhanvien/detail-nhan-vien.jsp").forward(req, resp);
+        req.setAttribute("view_nhanVien", "/views/admin/nhanvien/detail-nhan-vien.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -76,13 +77,15 @@ public class NhanVienServlet extends HttpServlet {
         List<ChucVu> listChucVu = chucVuReposiroty.getAll();
         req.setAttribute("listCuaHang", listCuaHang);
         req.setAttribute("listChucVu", listChucVu);
-        req.getRequestDispatcher("/views/admin/nhanvien/add-nhan-vien.jsp").forward(req, resp);
+        req.setAttribute("view_nhanVien", "/views/admin/nhanvien/add-nhan-vien.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     private void hienThi(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<NhanVien> listNhanVien = nhanVienRepository.getAll();
         req.setAttribute("listNhanVien", listNhanVien);
-        req.getRequestDispatcher("/views/admin/nhanvien/nhan-vien.jsp").forward(req, resp);
+        req.setAttribute("view_nhanVien", "/views/admin/nhanvien/nhan-vien.jsp");
+        req.getRequestDispatcher("/views/admin/home-admin.jsp").forward(req, resp);
     }
 
     @Override
