@@ -1,0 +1,230 @@
+body{
+    font-family: 'Quicksand', sans-serif;
+}
+.bg-mainmenu{
+    background-color:#2f9f3a;
+    border-radius: 10px;
+}
+.img-fluid{
+    max-width: 100%;
+    height: 50px !important;
+    margin-left: 70px;
+}
+.box50{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    display: inline-block;
+}
+.img-footer{
+    width: 164px;
+    height: 120px;
+}
+.btn-footer{
+    background-color: white;
+    border: solid 1px #2f9f3a;
+    border-radius: 50px;
+    color: #2f9f3a;
+    font-weight: 700;
+    width: auto;
+    margin-top: 10px ;
+}
+.btn-footer:hover{
+    background-color: #2f9f3a;
+    color: aliceblue;
+}
+.myfooter h5{
+    font-weight: 700;
+}
+.myfooter .list_menu{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.myfooter .list_menu .li_menu a{
+    text-decoration: none;
+    color: black;
+}
+.bg-item{
+    background-color: #3ea127 ;
+    border-radius: 20px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+.bg-item .list_menu{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.bg-item .list_menu .li_menu a{
+    text-decoration: none;
+    color: white;
+    margin-left: 10px;
+}
+.bg-item .list_menu .li_menu a:hover{
+    color: yellow;
+}
+.img_cate{
+    width: 135px;
+    height: 135px;
+}
+.boder_product{
+    border-radius: 20px;
+    border: solid 1px blue;
+}
+.title-khuyen-mai{
+    margin-bottom: 0;
+    position: relative;
+    font-size: 26px;
+    font-weight: 700;
+    color: #679210;
+    font-family: "Roboto",Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.title-dich-vu{
+    margin-bottom: 0;
+    position: relative;
+    font-size: 18px;
+    font-weight: 600;
+    color: #679210;
+    font-family: "Roboto",Helvetica Neue,Helvetica,Arial,sans-serif;
+    text-align: center;
+}
+.title-chinh-sach{
+    margin-bottom: 0;
+    position: relative;
+    font-size: 15px;
+    font-weight: 500;
+    color: #679210;
+    font-family: "Roboto",Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.title-gia{
+    border-radius: 10px;
+    background-color: #efffcf;
+    margin-bottom: 0;
+    position: relative;
+    font-size: 26px;
+    font-weight: 700;
+    color: #679210;
+    font-family: "Roboto",Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.title-btn{
+    margin-bottom: 0;
+    position: relative;
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+    font-family: "Roboto",Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.number-product{
+    display: block;
+    width: 100%;
+    min-height: 30px;
+    font-size: 1em;
+    line-height: 1.5;
+    color: #55595c;
+    background-color: #fff;
+    background-image: none;
+    margin: 0;
+    width: auto;
+    float: left;
+    position: relative;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    border: 1px solid #679210;
+    border-radius: 5px;
+    padding: 2px;
+}
+.i-so-luong{
+    padding: 0 2px;
+    text-align: center;
+    margin: 0px;
+    display: block;
+    float: left;
+    height: 35px;
+    border: 0;
+    width: 60px;
+    text-align: center;
+    box-shadow: none;
+    border-radius: 8px;
+    font-size: 15px;
+}
+.btn-them-ghang{
+    background-color: #679210;
+    color: aliceblue;
+    text-align: center;
+    border-radius: 10px;
+}
+.icon-gio-hang{
+    font-size: 40px;
+}
+.bder{
+    border-radius: 10px;
+}
+.bground{
+    background-color: #efffcf;
+}
+.btn-num{
+    font-size: 20px;
+    line-height: 0px;
+    border: 0;
+    /* display: inline-block; */
+    width: 35px;
+    height: 35px;
+    background: #679210;
+    float: left;
+    color: #fff;
+    text-align: center;
+    padding: 0px;
+    border-radius: 5px;
+}
+.btn-tht{
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: 16px;
+    border: 2px solid #679210;
+    border-radius: 5px;
+    color: #679210;
+}
+a{
+    text-decoration: none;
+}
+.item{
+    text-align: center;
+}
+.item-btn{
+    margin-top: 50px;
+    text-align: center;
+}
+.bder{
+    border-radius: 10px;
+}
+.img{
+    text-decoration: none;
+    color: black;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 0;
+}
+.img :hover{
+    color: #2f9f3a;
+}
+.myfooter{
+    background-color: #efffcf;
+}
+.btn-li{
+    margin-left: 20px;
+}
+.page{
+    display: flex;
+    justify-content: center;
+}
+.cate-lst>ul>li:hover{
+    background-color: #efffcf;
+}
+.list-group-item.active {
+    background-color: #efffcf !important;
+}
